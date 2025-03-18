@@ -1,6 +1,5 @@
 FROM n8nio/n8n:latest-debian
 
-# Switch to root, install apt packages
 USER root
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -33,8 +32,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
-# Remove or comment out next line to avoid "operation not permitted":
-# USER node
-
+# Omit: USER node
 EXPOSE 5678
-CMD ["tini", "--", "n8n"]
+CMD ["n8n"]
